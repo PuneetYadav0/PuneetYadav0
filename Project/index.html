@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .container{
+            min-height: 70vh;
+            width: 70%;
+            border-radius: 5px;
+            background-color: #1b535e;
+            position: absolute;
+        }
+        .main{ 
+            padding: 100px;
+            position: relative;            
+        }
+        .row{
+            display: flex;
+            /* padding: 2px; */
+        }
+        .col{
+            margin: 2px;
+            height: 70px;
+            width: 70px;
+            border: 1px solid rgb(255, 255, 255);
+            display: flex;
+            justify-content: center;
+            align-content: center;
+            cursor: pointer;
+            font-size: 30px;
+            color: rgb(0, 0, 0);
+            border-radius: 5px;
+        }    
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="main">
+            <div class="row">
+                <div onclick="handleClick(this)" id="0" class="col"></div>
+                <div onclick="handleClick(this)" id="1" class="col"></div>
+                <div onclick="handleClick(this)" id="2" class="col"></div>
+            </div>
+            <div class="row">
+                <div onclick="handleClick(this)" id="3" class="col"></div>
+                <div onclick="handleClick(this)" id="4" class="col"></div>
+                <div onclick="handleClick(this)" id="5" class="col"></div>
+            </div>
+            <div class="row">
+                <div onclick="handleClick(this)" id="6" class="col"></div>
+                <div onclick="handleClick(this)" id="7" class="col"></div>
+                <div onclick="handleClick(this)" id="8" class="col"></div>
+            </div>
+        </div>
+    </div>
+    <script src="index.js"></script>
+</body>
+</html>

@@ -382,15 +382,15 @@ console.log(a.description)
 
 /* ========= Iterators ========== */
 
-var x = ["Apple", "Grapes", "Mongo"]
+// var x = ["Apple", "Grapes", "Mongo"]
 
-let y = x[Symbol.iterator]()
-y.next()
-y.next()
-y.next()
-console.log(y.next())
-console.log(y.next())
-console.log(y.next())
+// let y = x[Symbol.iterator]()
+// y.next()
+// y.next()
+// y.next()
+// console.log(y.next())
+// console.log(y.next())
+// console.log(y.next())
 
 
 
