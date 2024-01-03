@@ -350,20 +350,47 @@
 //     return 'Hello'
 // }
 
-let myFuc = async () =>{
+// let myFuc = async () =>{
     // let response = await fetch('./user.json')
     // let student = await response.json();
     // return student
 
-    return (await fetch("./user.json")).json()
-}
-myFuc().then((res)=>{
-    res.forEach(res=> {
-        console.log(res.name)
-    });
-}).catch((error)=>{
-    console.log(error)
-})
+//     return (await fetch("./user.json")).json()
+// }
+// myFuc().then((res)=>{
+//     res.forEach(res=> {
+//         console.log(res.name)
+//     });
+// }).catch((error)=>{
+//     console.log(error)
+// })
+
+
+/* =========== Symbol data type ========== */
+
+/* let id = Symbol("hello")
+console.log(typeof id)
+console.log(id) 
+
+let a = Symbol("Hello");
+let b = Symbol("Hello");
+console.log(a===b); 
+let a = Symbol("Hello");
+
+console.log(a.description)
+*/
+
+/* ========= Iterators ========== */
+
+var x = ["Apple", "Grapes", "Mongo"]
+
+let y = x[Symbol.iterator]()
+y.next()
+y.next()
+y.next()
+console.log(y.next())
+console.log(y.next())
+console.log(y.next())
 
 
 
