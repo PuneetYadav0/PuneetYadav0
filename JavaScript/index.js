@@ -651,7 +651,6 @@ function chech(num){
 
 console.log(chech(105)) */
 
-
 /* 48. Write a JavaScript program to reverse a given string.  
 
 function reverse(str){
@@ -691,7 +690,6 @@ console.log(LetterChanges("PYTHON"));
 console.log(LetterChanges("W3R"));
 console.log(LetterChanges("php")); */
 
-
 /* 50. Write a JavaScript program to capitalize the first letter of each word in a given string.  
 
 function capitalize(str){
@@ -702,6 +700,261 @@ function capitalize(str){
 Jai Shree Ram
 console.log(capitalize("puneet")) */
 
+/* 
+51. Write a JavaScript program to convert a given number into hours and minutes.   
+
+function time_convert(num)
+ { 
+  var hours = Math.floor(num / 60);  
+  var minutes = num % 60;
+  return hours + ":" + minutes;         
+}
+console.log(time_convert(71));
+console.log(time_convert(450));
+console.log(time_convert(1441));
+*/
+
+/* 
+52. Write a JavaScript program to convert letters of a given string alphabetically.  
+function alphabet_Soup(str) { 
+  return str.split("").sort().join(""); 
+}
+console.log(alphabet_Soup("Python"));
+console.log(alphabet_Soup("puneet"));
+console.log(alphabet_Soup("Exercises"));  */
+
+/* 
+53. Write a JavaScript program to check whether the characters a and b are separated by exactly 3 places anywhere (at least once) in a given string.   
+function ab_Check(str) {
+  return (/a...b/).test(str) ||  (/b...a/).test(str)
+}
+console.log(ab_Check("Chainsbreak"));
+console.log(ab_Check("pane borrowed"));
+console.log(ab_Check("abCheck"));
+*/
+
+/* 54. Write a JavaScript program to count the number of vowels in a given string.
+
+function vowel_Count(str) {
+  return str.replace(/[^aeiou]/g, "").length; 
+}
+
+console.log(vowel_Count("Python"));
+console.log(vowel_Count("w3resource.com"));
+console.log(vowel_Count("Puneet"))  */
+
+/* 55. Write a JavaScript program to check whether a given string contains an equal number of p's and t's.   
+
+function equal_pt(str) {
+  var str_p = str.replace(/[^p]/g, "");
+  var str_t = str.replace(/[^t]/g, "");
+
+  var p_num = str_p.length;
+  var s_num = str_t.length;
+
+  return p_num === s_num;
+}
+console.log(equal_pt("paatpss"));
+console.log(equal_pt("paatps")); */
+
+/* 56. Write a JavaScript program to divide two positive numbers and return the result as string with properly formatted commas.  
+
+n1 = 80;
+n2 = 6;
+
+var div = Math.round(n1 / n2).toString(),
+result_array = div.split("");
+console.log(div)
+
+if (div >= 1000) {
+  for (var i = div.length - 3; i > 0; i -= 3) {
+    result_array.splice(i, 0, ",");
+  }
+  result_array;
+}
+console.log(result_array); */
+
+/* 57. Write a JavaScript program to create one string of specified copies (positive numbers) of a given string.   
+function string_copies (str, n) 
+{
+  if (n < 0)
+    return false;
+  else
+  return str.repeat(n);
+}
+console.log(string_copies("abc", 5));
+console.log(string_copies("abc", 0));
+console.log(string_copies("abc", -2));*/
+
+/* 58. Write a JavaScript program to create an updated string of 4 copies of the last 3 characters of a given original string. The string length must be 3 and above. 
+
+function copies(str){
+  if(str.length >=3){
+    let substring = str.substring(str.length -3)
+    let repeat = substring.repeat(4);
+    return str + repeat
+    
+  }else{
+    return false
+  }
+}
+
+console.log(copies("Puneet"))  */
+
+/* 
+59. Write a JavaScript program to extract the first half of a even string  
+
+function first_half (str) {
+  if (str.length % 2 == 0) {
+    return str.slice(0, str.length / 2);
+  }
+  return str;
+}
+console.log(first_half("Python"));  
+console.log(first_half("JavaScript")); 
+console.log(first_half("PHP")); */
+
+/* 60. Write a JavaScript program to create a new string without the first and last characters of a given string.   
+
+function without_first_end(str) {
+  return str.substring(1, str.length - 1);
+}
+console.log(without_first_end('JavaScript'));
+console.log(without_first_end('JS'));
+console.log(without_first_end('PHP')); */
+
+/* 
+61. Write a JavaScript program to concatenate two strings except for their first character.   
+
+function concatenate(str1, str2) {
+  str1 = str1.substring(1, str1.length);
+  str2 = str2.substring(1, str2.length);
+  return str1 + str2;
+}
+
+console.log(concatenate("PHP","JS"));
+console.log(concatenate("A","B"));
+console.log(concatenate("AA","BB"));       */
+
+/* 62. Write a JavaScript program to move the last three characters to the start of a given string. The string length must be greater than or equal to three.  
+
+function right_three(str) {
+  if (str.length > 1) {
+    return str.slice(-3) + str.slice(0, -3);
+  }
+  return str;
+}
+console.log(right_three("Python"));
+console.log(right_three("JavaScript"));
+console.log(right_three("Puneet"));  */
+
+/* 
+63. Write a JavaScript program to create a string using the middle three characters of a given string of odd length. The string length must be greater than or equal to three.   
+
+function character(str) {
+  if (str.length >= 3 && str.length % 2 !== 0) {
+    mid = (str.length + 1)/2;
+    return str.slice(mid - 2, mid + 1);
+  } else {
+    return "even string or less char";
+  }
+}
+console.log(character("Punee")); */
+
+/* 64. Write a JavaScript program to concatenate two strings and return the result. If the length of the strings does not match, then remove the characters from the longer string.
+
+function concatenate(str1, str2) {
+  if (str1.length === str2.length) {
+    return str1 + str2;
+  }
+  if (str1.length > str2.length) {
+    let str1Inc = str1.substring(0, str2.length);
+    return str1Inc + str2;
+  } else if(str2.length > str1.length){
+    let str1Inc = str2.substring(0, str1.length);
+    return str1 + str1Inc;
+  }else{
+    return `somthing went wrong`
+  }
+}
+
+function str_con_cat(str1, str2) {
+  const m = Math.min(str1.length, str2.length);
+  return str1.substring(str1.length - m) + str2.substring(str2.length - m);
+}
+
+console.log(str_con_cat("Python", "JS"));
+console.log(str_con_cat("ab", "cdef"));
+
+console.log(concatenate("Yadav", "Puneet"));  */
+
+/* 
+65. Write a JavaScript program to test whether a string ends with "Script". The string length must be greater than or equal to 6.  
+
+function end_script(str) {
+  if (str.substring(str.length - 6, str.length) == "Script") {
+    return true;
+  } else {
+    return false;
+  }
+}
+console.log(end_script("JavaScript"));
+console.log(end_script("Java Script"));
+console.log(end_script("Java Scripts")); */
+
+/* 66. Write a JavaScript program to display the city name if the string begins with "Los" or "New" otherwise return blank.
+function check(str) {
+  if (str.substring(0, 3) === "Los" || str.substring(0, 3) === "New") {
+    return str;
+  } else {
+    return;
+  }
+}
+console.log(check("Los Angles"))   */
+
+/* 67. Write a JavaScript program to create a new string from a given string. This program removes the first and last characters of the string if the first or last character is 'P'. Return the original string if the condition is not satisfied.   
+
+function remove(str){
+  if(str.substring(0,1)=== "P" && str.substring(str.length-1)=== "P"){
+    return str.substring(1, str.length-1)
+  }else{
+    return str
+  }
+}
+console.log(remove("POooooP00")) */
+
+/* 
+68. Write a JavaScript program to create a new string using the first and last n characters from a given string. The string length must be larger than or equal to n.   
+function two_string(str, n)
+  {
+    first_part = str.substring(0, n);
+    last_part = str.substring(str.length - n);
+    return first_part + last_part;
+ }
+
+console.log(two_string("JavaScript", 2));
+console.log(two_string("JavaScript", 3)); */
+
+/* 69. Write a JavaScript program to compute the sum of three elements of a given array of integers of length 3.   
+
+function sum_three(nums)
+{
+  return nums[0] + nums[1] + nums[2];
+}
+
+console.log(sum_three([10, 32, 20]));  
+console.log(sum_three([5, 7, 9])); 
+console.log(sum_three([0, 8, -11])); */
+
+
+/* 70. Write a JavaScript program to rotate the elements left in a given array of integers of length 3.  
+function rotate_elements_left(array)
+{
+    return [array[1], array[2], array[0]];
+}
+console.log(rotate_elements_left([3, 4, 5]));  
+console.log(rotate_elements_left([0, -1, 2]));  
+console.log(rotate_elements_left([7, 6, 5]));  */
 
 
 
