@@ -1647,7 +1647,6 @@ let num =[15,12,12]
 let num2 =[15,188,12]
 console.log("ascsdn",Math.max(num, num2))  */
 
-
 /* Check whether there is at least one element which occurs in two given sorted arrays of integers 
 
 function check_common_element(arra1, arra2) {
@@ -1659,5 +1658,407 @@ function check_common_element(arra1, arra2) {
   return false;
 }
 console.log(check_common_element([1,2,3], [3,4,5]));   
-console.log(check_common_element([1,2,3], [5,6,7]));  */ 
+console.log(check_common_element([1,2,3], [5,6,7]));  */
 
+/* Check whether a given string contains only Latin letters and no two uppercase and no two lowercase letters are in adjacent positions 
+
+function isValidString(inputString) {
+  // Regular expression to match Latin letters and check the condition
+  var regex = /^[a-zA-Z](?!.*([A-Z][A-Z]|[a-z][a-z]))[a-zA-Z]*$/;
+
+  // Test the input string against the regular expression
+  return regex.test(inputString);
+}
+
+// Example usage:
+var testString1 = "AbCdEf";
+var testString2 = "aBcDeF";
+var testString3 = "AbCD";
+var testString4 = "aBcD";
+
+console.log(testString1 + " is valid? " + isValidString(testString1));
+console.log(testString2 + " is valid? " + isValidString(testString2));
+console.log(testString3 + " is valid? " + isValidString(testString3));
+console.log(testString4 + " is valid? " + isValidString(testString4));
+
+function test_string(input_str) {
+  var is_lower_case = function (symbol) {
+    if ("a" <= symbol && symbol <= "z") {
+      return true;
+    }
+    return false;
+  };
+
+  var is_upper_case = function (symbol) {
+    if ("A" <= symbol && symbol <= "Z") {
+      return true;
+    }
+    return false;
+  };
+
+  var is_first_char_lower = is_lower_case(input_str[0]),
+    is_first_char_upper = is_upper_case(input_str[0]);
+
+  if (!(is_first_char_lower || is_first_char_upper)) {
+    return false;
+  }
+
+  for (var i = 1; i < input_str.length; i++) {
+    if (i % 2) {
+      if (
+        is_lower_case(input_str[i]) === is_first_char_lower ||
+        is_upper_case(input_str[i]) === is_first_char_upper
+      ) {
+        return false;
+      }
+    } else {
+      if (
+        is_lower_case(input_str[i]) !== is_first_char_lower ||
+        is_upper_case(input_str[i]) !== is_first_char_upper
+      ) {
+        return false;
+      }
+    }
+  }
+
+  return true;
+}
+
+console.log(test_string("xYr"));
+console.log(test_string("XXyx")); */
+
+/* Find the number of inversions of a specified array of integers 
+
+function number_of_InversionsNaive(arr) {
+  var ctr = 0;
+  for (var i = 0; i < arr.length; i++) {
+    for (var j = i + 1; j < arr.length; j++) {
+      if (arr[i] > arr[j]) ctr++;
+    }
+  }
+  return ctr;
+}
+
+console.log(number_of_InversionsNaive([0, 3, 2, 5, 9]));
+console.log(number_of_InversionsNaive([1, 5, 4, 3]));
+console.log(number_of_InversionsNaive([10, 30, 20, -10]));
+
+function countInversions(arr) {
+  let inversions = 0;
+  for (let i = 0; i < arr.length - 1; i++) {
+    for (let j = i + 1; j < arr.length; j++) {
+      if (arr[i] > arr[j]) {
+        inversions++;
+      }
+    }
+  }
+  return inversions;
+}
+
+// Example usage:
+var array = [5, 2, 3, 1, 4];
+var inversionCount = countInversions(array);
+console.log("Number of inversions:", inversionCount);
+
+function countInversions(arr) {
+  // Helper function to merge and count inversions
+  function mergeAndCount(left, right) {
+    let merged = [];
+    let inversions = 0;
+    let i = 0,
+      j = 0;
+
+    while (i < left.length || j < right.length) {
+      if (i === left.length) {
+        merged.push(right[j]);
+        j++;
+      } else if (j === right.length) {
+        merged.push(left[i]);
+        i++;
+      } else if (left[i] <= right[j]) {
+        merged.push(left[i]);
+        i++;
+      } else {
+        // If element in the right is smaller, it means an inversion with all remaining elements in the left
+        merged.push(right[j]);
+        j++;
+        inversions += left.length - i;
+      }
+    }
+
+    return { merged, inversions };
+  }
+
+  // Main function for counting inversions using merge sort
+  function mergeSortAndCount(arr) {
+    if (arr.length <= 1) {
+      return { sorted: arr, inversions: 0 };
+    }
+
+    const mid = Math.floor(arr.length / 2);
+    const left = arr.slice(0, mid);
+    const right = arr.slice(mid);
+
+    const leftResult = mergeSortAndCount(left);
+    const rightResult = mergeSortAndCount(right);
+    const mergeResult = mergeAndCount(leftResult.sorted, rightResult.sorted);
+
+    return {
+      sorted: mergeResult.merged,
+      inversions:
+        leftResult.inversions + rightResult.inversions + mergeResult.inversions,
+    };
+  }
+
+  // Call the main function
+  const result = mergeSortAndCount(arr);
+
+  return result.inversions;
+}
+
+// Example usage:
+const array = [5, 2, 3, 1, 4];
+const inversionCount = countInversions(array);
+console.log("Number of inversions:", inversionCount);   */
+
+/* 103. Write a JavaScript program to find the maximum number of a given positive integer by deleting exactly one digit of the given number.  
+
+
+// Function to delete a digit from a number and return the highest possible number after deletion
+const digit_delete = (num) => {
+  let result = 0; // Initialize the result variable
+  let num_digits = []; // Array to store digits of the number
+
+  // Extract digits from the number and store them in an array
+  while (num) {
+      num_digits.push(num % 10);
+      num = Math.floor(num / 10);
+  }
+
+  // Loop through each digit to delete and find the maximum number after deletion
+  for (let index_num = 0; index_num < num_digits.length; index_num++) {
+      let n = 0; // Initialize a temporary variable for number formation
+      for (let i = num_digits.length - 1; i >= 0; i--) {
+          if (i !== index_num) {
+              n = n * 10 + num_digits[i]; // Form a number excluding the indexed digit
+          }
+      }
+      result = Math.max(n, result); // Update the result with the maximum number obtained
+  }
+
+  return result; // Return the highest possible number after deletion
+}
+
+console.log(digit_delete(100)); // Example usage
+console.log(digit_delete(10)); // Example usage
+console.log(digit_delete(1245)); // Example usage
+
+function findMaxNumberByDeletingOneDigit(num) {
+  // Convert the number to a string to iterate through each digit
+  const numStr = num.toString();
+  const length = numStr.length;
+
+  let maxNumber = -1;
+
+  for (let i = 0; i < length; i++) {
+      // Remove the current digit and form a new number
+      const newNumber = parseInt(numStr.substring(0, i) + numStr.substring(i + 1));
+
+      // Update the maximum number if the new number is greater
+      maxNumber = Math.max(maxNumber, newNumber);
+  }
+
+  return maxNumber;
+}
+
+// Example usage:
+const givenNumber = 35698;
+const result = findMaxNumberByDeletingOneDigit(givenNumber);
+
+console.log(`The maximum number obtained by deleting one digit from ${givenNumber} is: ${result}`);   */
+
+/* Find two elements of the array such that their absolute difference is not greater than a given integer but is as close to the said integer 
+
+function different_values(ara, n) {
+  var max_val = -1;
+  for (var i = 0; i < ara.length; i++) {
+    for (var j = i + 1; j < ara.length; j++) {
+      var x = Math.abs(ara[i] - ara[j]);
+      if (x <= n) {
+        max_val = Math.max(max_val, x);
+      }
+    }
+  }
+  return max_val;
+}
+console.log(different_values([12, 10, 33, 34], 10));
+console.log(different_values([12, 10, 33, 34], 24));
+console.log(different_values([12, 10, 33, 44], 40)); */
+
+/* Find the number of times to replace a given number with the sum of its digits until it convert to a single digit number 
+
+function digit_to_one(num) {
+  var digitSum = function (num) {
+    var digit_sum = 0;
+    while (num) {
+      digit_sum += num % 10;
+      num = Math.floor(num / 10);
+    }
+
+    return digit_sum;
+  };
+
+  var result = 0;
+
+  while (num >= 10) {
+    result += 1;
+    num = digitSum(num);
+  }
+
+  return result;
+}
+
+console.log(digit_to_one(123));
+console.log(digit_to_one(1889)); */
+
+/* Divide an integer by another integer as long as the result is an integer and return the result 
+
+function divide_digit(num, d) {
+  if (d == 1) return num;
+  else {
+    while (num % d === 0) {
+      num /= d;
+    }
+    return num;
+  }
+}
+console.log(divide_digit(-12, 2));
+console.log(divide_digit(13, 2));
+console.log(divide_digit(13, 1));    */
+
+/*  Find the number of sorted pairs formed by its elements of a given array of integers such that one element in the pair is divisible by the other one    
+
+function arr_pairs(arr) {
+  var result = 0;
+  for (var i = 0; i < arr.length; i++) {
+    for (var j = i + 1; j < arr.length; j++) {
+      if (arr[i] % arr[j] === 0 || arr[j] % arr[i] === 0) {
+        result++;
+      }
+    }
+  }
+  return result;
+}
+console.log(arr_pairs([1, 2, 3]));
+console.log(arr_pairs([2, 4, 6]));
+console.log(arr_pairs([2, 4, 16]));  */
+
+/* Create the dot products of two given 3D vectors 
+function dot_product(vector1, vector2) {
+  var result = 0;
+  for (var i = 0; i < 3; i++) {
+    result += vector1[i] * vector2[i];
+  }
+  return result;
+}
+console.log(dot_product([1,2,3], [1,2,3]))
+console.log(dot_product([2,4,6], [2,4,6]))
+console.log(dot_product([1,1,1], [0,1,-1])) */
+
+/*  Sort an array of all prime numbers between 1 and a given integer 
+
+function sieveOfEratosthenes(limit) {
+  const isPrime = new Array(limit + 1).fill(true);
+  isPrime[0] = isPrime[1] = false;
+
+  for (let i = 2; i <= Math.sqrt(limit); i++) {
+    if (isPrime[i]) {
+      for (let j = i * i; j <= limit; j += i) {
+        isPrime[j] = false;
+      }
+    }
+  }
+
+  return isPrime.reduce((primes, value, index) => {
+    if (value) {
+      primes.push(index);
+    }
+    return primes;
+  }, []);
+}
+
+function sortPrimesUpTo(limit) {
+  const primes = sieveOfEratosthenes(limit);
+  return primes.sort((a, b) => a - b);
+}
+
+// Example usage:
+const givenInteger = 50;
+const sortedPrimes = sortPrimesUpTo(givenInteger);
+
+// console.log(`Sorted prime numbers up to ${givenInteger}:`, sortedPrimes);
+
+function sort_prime(num) {
+  var prime_num1 = [],
+    prime_num2 = [];
+  for (var i = 0; i <= num; i++) {
+    prime_num2.push(true);
+  }
+
+  for (var i = 2; i <= num; i++) {
+    if (prime_num2[i]) {
+      prime_num1.push(i);
+      for (var j = 1; i * j <= num; j++) {
+        prime_num2[i * j] = false;
+      }
+    }
+  }
+  return prime_num1;
+}
+
+// console.log(sort_prime(5));
+// console.log(sort_prime(11));
+console.log(sort_prime(19));   */
+
+/* Find the number of even values in sequence before the first occurrence of a given number */
+
+function find_numbers(arr_num, num) {
+  var result = 0;
+  for (var i = 0; i < arr_num.length; i++) {
+    if (arr_num[i] % 2 === 0 && arr_num[i] !== num) {
+      result++;
+    }
+    if (arr_num[i] === num) {
+      return result;
+    }
+  }
+  return -1;
+}
+
+console.log(find_numbers([1, 2, 3, 4, 5, 6, 7, 8], 5));
+console.log(find_numbers([1, 3, 5, 6, 7, 8], 6));
+
+
+function countEvenBeforeGiven(sequence, givenNumber) {
+  let evenCount = 0;
+
+  for (let i = 0; i < sequence.length; i++) {
+    if (sequence[i] % 2 === 0) {
+      evenCount++;
+    }
+
+    if (sequence[i] === givenNumber) {
+      // Stop the loop when the given number is found
+      break;
+    }
+  }
+
+  return evenCount;
+}
+
+// Example usage:
+const sequence = [2, 4, 6, 8, 10, 3, 5, 7, 9, 11];
+const givenNumber = 3;
+
+const result = countEvenBeforeGiven(sequence, givenNumber);
+console.log(`Number of even values before ${givenNumber}:`, result);
